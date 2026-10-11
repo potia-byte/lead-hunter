@@ -1,0 +1,29 @@
+{
+  "name": "lead-hunter",
+  "version": "0.1.0",
+  "description": "Read-only B2B lead discovery in public Telegram: discover, verify with quotes, score, export evidence-first lead records.",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "build": "tsc -p tsconfig.build.json",
+    "demo": "tsx demo/run.ts",
+    "hunt": "tsx src/bin.ts"
+  },
+  "dependencies": {
+    "zod": "4.4.3"
+  },
+  "optionalDependencies": {
+    "teleproto": "1.229.0"
+  },
+  "devDependencies": {
+    "@types/node": "26.3.0",
+    "tsx": "4.23.12",
+    "typescript": "7.0.2",
+    "vitest": "4.1.11"
+  }
+}
