@@ -1,6 +1,6 @@
 # lead-hunter
 
-**English summary.** A standalone TypeScript module that finds B2B leads in *public* Telegram for a sales team. It discovers public channels, bots and Mini Apps (search, ad posts, mentions), has an LLM read them, **verifies every model claim against the source text with code** (quotes, links and contacts the model cannot prove are dropped), merges duplicate entities, computes an explainable 0-100 fit score, and exports evidence-first lead records in which every fact cites a source URL. It is read-only (no joins, no messages), resumable, and splits cleanly behind two small interfaces: `LlmClient` (any model provider) and `TelegramDiscovery` (live MTProto adapter or fixtures). `npm run demo` runs the whole pipeline on a synthetic world with no keys and no network. Extracted from a production monorepo; the live Telegram client is kept as an optional adapter and is **not exercised by this repo's tests**. Code was written with AI agents (Claude, Codex) under the owner's product direction, architecture and acceptance.
+**English summary.** A standalone TypeScript module that finds B2B leads in *public* Telegram for a sales team; it discovers public channels, bots and Mini Apps (search, ad posts, mentions), has an LLM read them, **verifies every model claim against the source text with code** (quotes, links and contacts the model cannot prove are dropped), merges duplicate entities, computes an explainable 0-100 fit score, and exports evidence-first lead records in which every fact cites a source URL. It is read-only (no joins, no messages), resumable, and splits cleanly behind two small interfaces: `LlmClient` (any model provider) and `TelegramDiscovery` (live MTProto adapter or fixtures). `npm run demo` runs the whole pipeline on a synthetic world with no keys and no network; extracted from a production monorepo, the live Telegram client is kept as an optional adapter and is **not exercised by this repo's tests**. Code was written with AI agents (Claude, Codex) under the owner's product direction, architecture and acceptance.
 
 ---
 
@@ -58,7 +58,7 @@ flowchart LR
 | `src/adapters/openai-compatible.ts` | `LlmClient` поверх любого `/chat/completions` |
 | `src/pacing.ts` | ограничитель частоты + обработка FLOOD_WAIT |
 
-## 3. Ключевые решения
+## 3. Ключевые решения и почему
 
 1. **Модель не пишет ссылки, хендлы и e-mail.** Код заранее извлекает их из публичного текста и нумерует (`L1`, `H2`, `E1`); модель только выбирает номера. Каждое утверждение про рекламу/рост/монетизацию должно сопровождаться дословной цитатой из указанного источника; цитата, которой нет в тексте (с учётом регистра, пробелов, «ё»), отбрасывается, а счётчик `droppedClaims` попадает в отчёт. Проверено тестами (`classification verification`) и в демо (одна намеренно выдуманная цитата отбрасывается).
 2. **Самый сильный сигнал берётся без модели.** Если сущность является целью чужого рекламного поста (маркер `erid`, `#реклама`, `Реклама.` и т.п.), она по определению тратила деньги на привлечение. Из поста извлекаются хендл/домен цели и юридическое лицо с ИНН из строки «Рекламодатель: …».
@@ -180,4 +180,11 @@ export function poolAsLlm(pool: ModelPool): LlmClient {
 
 ## 7. Моя роль
 
-Продуктовая постановка (какой лид считается ценным, что считается доказательством, что можно и нельзя делать с аккаунтом), архитектура (границы интерфейсов, принцип «модель выбирает, код проверяет», read-only), приёмка (критерии готовности, проверка результата, решение о том, что считать подтверждённым). Код написан с помощью ИИ-агентов (Claude, Codex) под управлением владельца репозитория.
+Продуктовая постановка, архитектура и приёмка — мои. Код написан ИИ-агентами (Claude, Codex) под моим управлением.
+
+Продуктовая постановка: какой лид считается ценным, что считается доказательством, что можно и нельзя делать с аккаунтом. Архитектура: границы интерфейсов, принцип «модель выбирает, код проверяет», read-only. Приёмка: критерии готовности, проверка результата, решение о том, что считать подтверждённым.
+
+## Связанные репозитории
+
+- [developer-factory-case](https://github.com/potia-byte/developer-factory-case) — архитектура системы ИИ-агентов, из которой выделен модуль
+- [giftquest-case](https://github.com/potia-byte/giftquest-case) — продукт, для продаж которого создан Lead Hunter
