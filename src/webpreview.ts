@@ -149,7 +149,7 @@ export function parseChannelPage(html: string): WebChannelPage {
   return { posts, before: before ? Number(before) : null };
 }
 
-/** "Реклама. Рекламодатель: ООО «ДИХАУС». ИНН 7709751313. erid: …" */
+/** "Реклама. Рекламодатель: ООО «Ромашка». ИНН 7700000000. erid: …" */
 export function advertiserMarkOf(text: string): AdvertiserMark | null {
   const match =
     /рекламодатель\s*[:\-–]?\s*([^\n]{2,120}?)(?:[.,;]?\s*(?:ИНН|инн)\s*[:\s]*(\d{10}|\d{12}))?(?=[.,;]?\s*(?:erid|ИНН|инн|$|\n))/iu.exec(
