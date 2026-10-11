@@ -1,0 +1,107 @@
+{
+  "name": "Acme Rewards",
+  "description": "Acme Rewards is a Telegram Mini App where users complete tasks (subscribe to a channel, start a bot, open a Mini App, register, make a first action or purchase) and advertisers pay per verified action.",
+  "goodLeadCriteria": "A good lead is a business or product that could pay for such actions: Mini Apps, bots, games, apps, web services, crypto/fintech products, exchanges, e-commerce, education, and also channels or communities that visibly promote themselves.",
+  "rejectCriteria": "Reject only: personal blogs without a product, ad sellers/agencies/\"buy ads here\" catalogs, outright fraud (phishing, wallet drainers, pyramid schemes), pornography, drugs, pure news aggregators with no product, dead or empty pages.",
+  "queryPlanningContext": "businesses that could buy user actions (channel subscriptions, bot starts, Mini App launches, registrations, first purchases) from a rewards Mini App",
+  "seedEntityQueries": [
+    "mini app",
+    "miniapp",
+    "tap game",
+    "telegram game",
+    "игра бот",
+    "crypto wallet",
+    "криптокошелек",
+    "обменник",
+    "p2p exchange",
+    "airdrop",
+    "vpn bot",
+    "vpn",
+    "курсы",
+    "онлайн школа",
+    "english school",
+    "магазин",
+    "shop bot",
+    "маркетплейс",
+    "доставка",
+    "fintech",
+    "кэшбэк",
+    "cashback",
+    "подписки",
+    "нейросеть бот",
+    "ai bot",
+    "gpt bot",
+    "знакомства бот",
+    "фитнес",
+    "финансы",
+    "инвестиции",
+    "trading bot",
+    "casual game",
+    "nft",
+    "web3",
+    "стартап",
+    "saas",
+    "сервис",
+    "приложение",
+    "мини приложение",
+    "referral"
+  ],
+  "seedPostQueries": [
+    "erid",
+    "реклама erid",
+    "запустили mini app",
+    "наш мини апп",
+    "реферальная программа",
+    "пригласи друга",
+    "розыгрыш подписка",
+    "giveaway",
+    "airdrop tasks",
+    "по вопросам рекламы",
+    "сотрудничество",
+    "partnership"
+  ],
+  "actions": {
+    "mini_app_launch": {
+      "label": "Mini App launches",
+      "offer": "Free test batch of ~30-50 Mini App launches, then a paid pilot per confirmed launch."
+    },
+    "bot_start": {
+      "label": "bot starts",
+      "offer": "Free test batch of ~30-50 bot starts, then a paid pilot per confirmed start."
+    },
+    "registration": {
+      "label": "registrations",
+      "offer": "Free test batch of ~30-50 registrations, then a paid pilot per confirmed registration."
+    },
+    "app_install": {
+      "label": "installs with registration",
+      "offer": "Free test batch of ~30-50 installs with registration, then a paid pilot per confirmed install."
+    },
+    "first_action": {
+      "label": "first actions",
+      "offer": "Free test batch of ~30-50 first actions, then a paid pilot per confirmed action."
+    },
+    "channel_subscribe": {
+      "label": "channel subscriptions",
+      "offer": "Free test batch of ~30-50 channel subscriptions, then a paid pilot per confirmed subscription."
+    },
+    "community_join": {
+      "label": "community joins",
+      "offer": "Free test batch of ~30-50 community joins, then a paid pilot per confirmed join."
+    },
+    "first_purchase": {
+      "label": "first purchases",
+      "offer": "Free test batch of ~10 first purchases, then a paid pilot per confirmed purchase."
+    }
+  },
+  "actionPriority": [
+    "mini_app_launch",
+    "bot_start",
+    "registration",
+    "first_action",
+    "app_install",
+    "channel_subscribe",
+    "community_join",
+    "first_purchase"
+  ]
+}
